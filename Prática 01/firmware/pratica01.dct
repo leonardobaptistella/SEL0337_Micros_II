@@ -297,6 +297,7 @@ dfn8ef
 dfn8ef_bit
 dir_
 dir__bit
+display
 div_16x16_s
 div_16x16_s_l
 div_16x16_u
@@ -571,6 +572,7 @@ intedg1
 intedg1_bit
 intedg2
 intedg2_bit
+interrupt
 intsrc
 intsrc_bit
 iofs
@@ -686,6 +688,7 @@ lvv2
 lvv2_bit
 lvv3
 lvv3_bit
+main
 mul_16x16_s
 mul_16x16_u
 mul_32x32_fp
@@ -1189,6 +1192,7 @@ tblptr
 tblptrh
 tblptrl
 tblptru
+teste
 tmr0h
 tmr0ie
 tmr0ie_bit

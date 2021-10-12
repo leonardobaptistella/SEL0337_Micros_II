@@ -65,7 +65,8 @@ void display(int num)
 void main(){
      //Variaveis
      long int i;
-
+     bit buf_rb0, buf_rb1;
+     
      /*Registers configuration*/
      ADCON1 = 0b00001111;       //Todas portas são digitais
      INTCON = 0b11100000;        //Ativa interrupção globa e int do Timer 0
@@ -86,36 +87,67 @@ void main(){
      TMR0H = 0x85;
 
      //Teste do Display
-     for(i=0;i<10;i++)
+     /*for(i=0;i<10;i++)
      {
       display(i);
       TMR0ON_bit = 1;
       teste  = 0;
       while(teste == 0);
-     }
+     }*/
      
      while(1)
      {
-      if(RB0_bit == 0)
+      buf_rb1 = RB1_bit;
+      buf_rb0 = RB0_bit;
+      
+      while(buf_rb1 == 0)
       {
        for(i=0;i<10;i++)
        {
+        if((buf_rb0 == 1) && (RB0_bit == 0))
+          {
+           buf_rb1 = 1;
+           buf_rb0 = 0;
+           break;
+          }
         display(i);
         TMR0ON_bit = 1;
         teste  = 0;
-        while(teste == 0);
+        while(teste == 0)
+        {
+          if((buf_rb0 == 1) && (RB0_bit == 0))
+          {
+           buf_rb1 = 1;
+           buf_rb0 = 0;
+           break;
+          }
+        }
        }
       }
       
-      if(RB1_bit == 0)
+      while(buf_rb0 == 0)
       {
        for(i=0;i<10;i++)
        {
+        if((buf_rb1 == 1) && (RB1_bit == 0))
+          {
+           buf_rb1 = 0;
+           buf_rb0 = 1;
+           break;
+          }
         display(i);
         T0CON = 0b00000101;
         TMR0ON_bit = 1;
         teste  = 0;
-        while(teste == 0);
+        while(teste == 0){
+          if((buf_rb1 == 1) && (RB1_bit == 0))
+          {
+           buf_rb1 = 0;
+           buf_rb0 = 1;
+           break;
+          }
+        }
+        
        }
       }
      }
