@@ -87,42 +87,59 @@ void main(){
 
      while(1)
      {
-     
-        if((RB1_bit == 1) && (RB0_bit == 1)){
-         i = 0;
-         display(i);
-        }
-
-        if(RB1_bit == 0)
-        {
-          if(i>9)
+      buf_rb1 = RB1_bit;
+      buf_rb0 = RB0_bit;
+      
+      while(buf_rb1 == 0)
+      {
+       for(i=0;i<10;i++)
+       {
+        if((buf_rb0 == 1) && (RB0_bit == 0))
           {
-             i = 0;
-             display(i);
+           buf_rb1 = 1;
+           buf_rb0 = 0;
+           break;
           }
-          display(i);
-          i=i+1;
-          TMR0ON_bit = 1;
-          teste  = 0;
-          while(teste == 0);
-
-        }
-
-        if(RB0_bit == 0)
+        display(i);
+        TMR0ON_bit = 1;
+        teste  = 0;
+        while(teste == 0)
         {
-         if(i>9)
-         {
-           i = 0;
-           display(i);
-         }
-         display(i);
-         i=i+1;
-         T0CON = 0b00000101;      //Prescaler 1:64
-         TMR0ON_bit = 1;
-         teste  = 0;
-         while(teste == 0);
-
+          if((buf_rb0 == 1) && (RB0_bit == 0))
+          {
+           buf_rb1 = 1;
+           buf_rb0 = 0;
+           break;
+          }
         }
-
+       }
+      }
+      
+      while(buf_rb0 == 0)
+      {
+       for(i=0;i<10;i++)
+       {
+        if((buf_rb1 == 1) && (RB1_bit == 0))
+          {
+           buf_rb1 = 0;
+           buf_rb0 = 1;
+           break;
+          }
+        display(i);
+        T0CON = 0b00000101;
+        TMR0ON_bit = 1;
+        teste  = 0;
+        while(teste == 0){
+          if((buf_rb1 == 1) && (RB1_bit == 0))
+          {
+           buf_rb1 = 0;
+           buf_rb0 = 1;
+           break;
+          }
+        }
+        
+       }
+      }
      }
+
 }

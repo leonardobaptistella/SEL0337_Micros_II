@@ -7,4 +7,5 @@
 <item n="GIE_bit" r="0" s="False" e="False" i="5"/>
 <item n="TMR0IE_bit" r="0" s="False" e="False" i="6"/>
 <item n="INTCON" r="2" s="False" e="False" i="7"/>
+<item n="main_i_L0" r="0" s="True" e="False" i="8"/>
 </WCH>

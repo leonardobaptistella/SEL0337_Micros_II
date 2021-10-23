@@ -59,7 +59,6 @@ void display(int num)
  case 9:
  latd = 0b11110110;
  break;
-
  }
 }
 
@@ -74,66 +73,49 @@ void main(){
  trisb = 0b00000011;
  trisd = 0b00000000;
  latd = 0b00000000;
-#line 85 "G:/Faculdade/8° Semestre/SEL0337 - Micros II/SEL0337_Micros_II/Prática 01/firmware/pratica01.c"
+#line 84 "G:/Faculdade/8° Semestre/SEL0337 - Micros II/SEL0337_Micros_II/Prática 01/firmware/pratica01.c"
  T0CON = 0b00000011;
  TMR0L = 0xEE;
  TMR0H = 0x85;
-#line 98 "G:/Faculdade/8° Semestre/SEL0337 - Micros II/SEL0337_Micros_II/Prática 01/firmware/pratica01.c"
+
  while(1)
  {
- buf_rb1 = RB1_bit;
- buf_rb0 = RB0_bit;
 
- while(buf_rb1 == 0)
+ if((RB1_bit == 1) && (RB0_bit == 1)){
+ i = 0;
+ display(i);
+ }
+
+ if(RB1_bit == 0)
  {
- for(i=0;i<10;i++)
+ if(i>9)
  {
- if((buf_rb0 == 1) && (RB0_bit == 0))
- {
- buf_rb1 = 1;
- buf_rb0 = 0;
- break;
+ i = 0;
+ display(i);
  }
  display(i);
+ i=i+1;
  TMR0ON_bit = 1;
  teste = 0;
- while(teste == 0)
- {
- if((buf_rb0 == 1) && (RB0_bit == 0))
- {
- buf_rb1 = 1;
- buf_rb0 = 0;
- break;
- }
- }
- }
+ while(teste == 0);
+
  }
 
- while(buf_rb0 == 0)
+ if(RB0_bit == 0)
  {
- for(i=0;i<10;i++)
+ if(i>9)
  {
- if((buf_rb1 == 1) && (RB1_bit == 0))
- {
- buf_rb1 = 0;
- buf_rb0 = 1;
- break;
+ i = 0;
+ display(i);
  }
  display(i);
+ i=i+1;
  T0CON = 0b00000101;
  TMR0ON_bit = 1;
  teste = 0;
- while(teste == 0){
- if((buf_rb1 == 1) && (RB1_bit == 0))
- {
- buf_rb1 = 0;
- buf_rb0 = 1;
- break;
- }
+ while(teste == 0);
+
  }
 
  }
- }
- }
-
 }

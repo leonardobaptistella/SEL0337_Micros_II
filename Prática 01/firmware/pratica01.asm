@@ -22,7 +22,7 @@ _Interrupt:
 L_Interrupt0:
 ;pratica01.c,15 :: 		}
 L_end_Interrupt:
-L__Interrupt46:
+L__Interrupt28:
 	RETFIE      1
 ; end of _Interrupt
 
@@ -101,329 +101,274 @@ L_display12:
 	MOVWF       LATD+0 
 ;pratica01.c,60 :: 		break;
 	GOTO        L_display2
-;pratica01.c,62 :: 		}
+;pratica01.c,61 :: 		}
 L_display1:
 	MOVLW       0
 	XORWF       FARG_display_num+1, 0 
 	BTFSS       STATUS+0, 2 
-	GOTO        L__display48
+	GOTO        L__display30
 	MOVLW       0
 	XORWF       FARG_display_num+0, 0 
-L__display48:
+L__display30:
 	BTFSC       STATUS+0, 2 
 	GOTO        L_display3
 	MOVLW       0
 	XORWF       FARG_display_num+1, 0 
 	BTFSS       STATUS+0, 2 
-	GOTO        L__display49
+	GOTO        L__display31
 	MOVLW       1
 	XORWF       FARG_display_num+0, 0 
-L__display49:
+L__display31:
 	BTFSC       STATUS+0, 2 
 	GOTO        L_display4
 	MOVLW       0
 	XORWF       FARG_display_num+1, 0 
 	BTFSS       STATUS+0, 2 
-	GOTO        L__display50
+	GOTO        L__display32
 	MOVLW       2
 	XORWF       FARG_display_num+0, 0 
-L__display50:
+L__display32:
 	BTFSC       STATUS+0, 2 
 	GOTO        L_display5
 	MOVLW       0
 	XORWF       FARG_display_num+1, 0 
 	BTFSS       STATUS+0, 2 
-	GOTO        L__display51
+	GOTO        L__display33
 	MOVLW       3
 	XORWF       FARG_display_num+0, 0 
-L__display51:
+L__display33:
 	BTFSC       STATUS+0, 2 
 	GOTO        L_display6
 	MOVLW       0
 	XORWF       FARG_display_num+1, 0 
 	BTFSS       STATUS+0, 2 
-	GOTO        L__display52
+	GOTO        L__display34
 	MOVLW       4
 	XORWF       FARG_display_num+0, 0 
-L__display52:
+L__display34:
 	BTFSC       STATUS+0, 2 
 	GOTO        L_display7
 	MOVLW       0
 	XORWF       FARG_display_num+1, 0 
 	BTFSS       STATUS+0, 2 
-	GOTO        L__display53
+	GOTO        L__display35
 	MOVLW       5
 	XORWF       FARG_display_num+0, 0 
-L__display53:
+L__display35:
 	BTFSC       STATUS+0, 2 
 	GOTO        L_display8
 	MOVLW       0
 	XORWF       FARG_display_num+1, 0 
 	BTFSS       STATUS+0, 2 
-	GOTO        L__display54
+	GOTO        L__display36
 	MOVLW       6
 	XORWF       FARG_display_num+0, 0 
-L__display54:
+L__display36:
 	BTFSC       STATUS+0, 2 
 	GOTO        L_display9
 	MOVLW       0
 	XORWF       FARG_display_num+1, 0 
 	BTFSS       STATUS+0, 2 
-	GOTO        L__display55
+	GOTO        L__display37
 	MOVLW       7
 	XORWF       FARG_display_num+0, 0 
-L__display55:
+L__display37:
 	BTFSC       STATUS+0, 2 
 	GOTO        L_display10
 	MOVLW       0
 	XORWF       FARG_display_num+1, 0 
 	BTFSS       STATUS+0, 2 
-	GOTO        L__display56
+	GOTO        L__display38
 	MOVLW       8
 	XORWF       FARG_display_num+0, 0 
-L__display56:
+L__display38:
 	BTFSC       STATUS+0, 2 
 	GOTO        L_display11
 	MOVLW       0
 	XORWF       FARG_display_num+1, 0 
 	BTFSS       STATUS+0, 2 
-	GOTO        L__display57
+	GOTO        L__display39
 	MOVLW       9
 	XORWF       FARG_display_num+0, 0 
-L__display57:
+L__display39:
 	BTFSC       STATUS+0, 2 
 	GOTO        L_display12
 L_display2:
-;pratica01.c,63 :: 		}
+;pratica01.c,62 :: 		}
 L_end_display:
 	RETURN      0
 ; end of _display
 
 _main:
 
-;pratica01.c,65 :: 		void main(){
-;pratica01.c,71 :: 		ADCON1 = 0b00001111;       //Todas portas são digitais
+;pratica01.c,64 :: 		void main(){
+;pratica01.c,70 :: 		ADCON1 = 0b00001111;       //Todas portas são digitais
 	MOVLW       15
 	MOVWF       ADCON1+0 
-;pratica01.c,72 :: 		INTCON = 0b11100000;        //Ativa interrupção globa e int do Timer 0
+;pratica01.c,71 :: 		INTCON = 0b11100000;        //Ativa interrupção globa e int do Timer 0
 	MOVLW       224
 	MOVWF       INTCON+0 
-;pratica01.c,73 :: 		trisb  = 0b00000011;       //Config. RB0 e RB1 como input
+;pratica01.c,72 :: 		trisb  = 0b00000011;       //Config. RB0 e RB1 como input
 	MOVLW       3
 	MOVWF       TRISB+0 
-;pratica01.c,74 :: 		trisd  = 0b00000000;       //Config. todas D ports como output
+;pratica01.c,73 :: 		trisd  = 0b00000000;       //Config. todas D ports como output
 	CLRF        TRISD+0 
-;pratica01.c,75 :: 		latd  = 0b00000000;       //Inicia display apagado
+;pratica01.c,74 :: 		latd  = 0b00000000;       //Inicia display apagado
 	CLRF        LATD+0 
-;pratica01.c,85 :: 		T0CON = 0b00000011;
+;pratica01.c,84 :: 		T0CON = 0b00000011;
 	MOVLW       3
 	MOVWF       T0CON+0 
-;pratica01.c,86 :: 		TMR0L = 0xEE;
+;pratica01.c,85 :: 		TMR0L = 0xEE;
 	MOVLW       238
 	MOVWF       TMR0L+0 
-;pratica01.c,87 :: 		TMR0H = 0x85;
+;pratica01.c,86 :: 		TMR0H = 0x85;
 	MOVLW       133
 	MOVWF       TMR0H+0 
-;pratica01.c,98 :: 		while(1)
+;pratica01.c,88 :: 		while(1)
 L_main13:
-;pratica01.c,100 :: 		buf_rb1 = RB1_bit;
-	BTFSC       RB1_bit+0, BitPos(RB1_bit+0) 
-	GOTO        L__main59
-	BCF         main_buf_rb1_L0+0, BitPos(main_buf_rb1_L0+0) 
-	GOTO        L__main60
-L__main59:
-	BSF         main_buf_rb1_L0+0, BitPos(main_buf_rb1_L0+0) 
-L__main60:
-;pratica01.c,101 :: 		buf_rb0 = RB0_bit;
-	BTFSC       RB0_bit+0, BitPos(RB0_bit+0) 
-	GOTO        L__main61
-	BCF         main_buf_rb0_L0+0, BitPos(main_buf_rb0_L0+0) 
-	GOTO        L__main62
-L__main61:
-	BSF         main_buf_rb0_L0+0, BitPos(main_buf_rb0_L0+0) 
-L__main62:
-;pratica01.c,103 :: 		while(buf_rb1 == 0)
-L_main15:
-	BTFSC       main_buf_rb1_L0+0, BitPos(main_buf_rb1_L0+0) 
-	GOTO        L_main16
-;pratica01.c,105 :: 		for(i=0;i<10;i++)
+;pratica01.c,91 :: 		if((RB1_bit == 1) && (RB0_bit == 1)){
+	BTFSS       RB1_bit+0, BitPos(RB1_bit+0) 
+	GOTO        L_main17
+	BTFSS       RB0_bit+0, BitPos(RB0_bit+0) 
+	GOTO        L_main17
+L__main26:
+;pratica01.c,92 :: 		i = 0;
 	CLRF        main_i_L0+0 
 	CLRF        main_i_L0+1 
 	CLRF        main_i_L0+2 
 	CLRF        main_i_L0+3 
+;pratica01.c,93 :: 		display(i);
+	CLRF        FARG_display_num+0 
+	CLRF        FARG_display_num+1 
+	CALL        _display+0, 0
+;pratica01.c,94 :: 		}
 L_main17:
+;pratica01.c,96 :: 		if(RB1_bit == 0)
+	BTFSC       RB1_bit+0, BitPos(RB1_bit+0) 
+	GOTO        L_main18
+;pratica01.c,98 :: 		if(i>9)
 	MOVLW       128
-	XORWF       main_i_L0+3, 0 
 	MOVWF       R0 
 	MOVLW       128
+	XORWF       main_i_L0+3, 0 
 	SUBWF       R0, 0 
 	BTFSS       STATUS+0, 2 
-	GOTO        L__main63
-	MOVLW       0
-	SUBWF       main_i_L0+2, 0 
+	GOTO        L__main41
+	MOVF        main_i_L0+2, 0 
+	SUBLW       0
 	BTFSS       STATUS+0, 2 
-	GOTO        L__main63
-	MOVLW       0
-	SUBWF       main_i_L0+1, 0 
+	GOTO        L__main41
+	MOVF        main_i_L0+1, 0 
+	SUBLW       0
 	BTFSS       STATUS+0, 2 
-	GOTO        L__main63
-	MOVLW       10
-	SUBWF       main_i_L0+0, 0 
-L__main63:
+	GOTO        L__main41
+	MOVF        main_i_L0+0, 0 
+	SUBLW       9
+L__main41:
 	BTFSC       STATUS+0, 0 
-	GOTO        L_main18
-;pratica01.c,107 :: 		if((buf_rb0 == 1) && (RB0_bit == 0))
-	BTFSS       main_buf_rb0_L0+0, BitPos(main_buf_rb0_L0+0) 
-	GOTO        L_main22
-	BTFSC       RB0_bit+0, BitPos(RB0_bit+0) 
-	GOTO        L_main22
-L__main44:
-;pratica01.c,109 :: 		buf_rb1 = 1;
-	BSF         main_buf_rb1_L0+0, BitPos(main_buf_rb1_L0+0) 
-;pratica01.c,110 :: 		buf_rb0 = 0;
-	BCF         main_buf_rb0_L0+0, BitPos(main_buf_rb0_L0+0) 
-;pratica01.c,111 :: 		break;
-	GOTO        L_main18
-;pratica01.c,112 :: 		}
-L_main22:
-;pratica01.c,113 :: 		display(i);
+	GOTO        L_main19
+;pratica01.c,100 :: 		i = 0;
+	CLRF        main_i_L0+0 
+	CLRF        main_i_L0+1 
+	CLRF        main_i_L0+2 
+	CLRF        main_i_L0+3 
+;pratica01.c,101 :: 		display(i);
+	CLRF        FARG_display_num+0 
+	CLRF        FARG_display_num+1 
+	CALL        _display+0, 0
+;pratica01.c,102 :: 		}
+L_main19:
+;pratica01.c,103 :: 		display(i);
 	MOVF        main_i_L0+0, 0 
 	MOVWF       FARG_display_num+0 
 	MOVF        main_i_L0+1, 0 
 	MOVWF       FARG_display_num+1 
 	CALL        _display+0, 0
-;pratica01.c,114 :: 		TMR0ON_bit = 1;
-	BSF         TMR0ON_bit+0, BitPos(TMR0ON_bit+0) 
-;pratica01.c,115 :: 		teste  = 0;
-	BCF         _teste+0, BitPos(_teste+0) 
-;pratica01.c,116 :: 		while(teste == 0)
-L_main23:
-	BTFSC       _teste+0, BitPos(_teste+0) 
-	GOTO        L_main24
-;pratica01.c,118 :: 		if((buf_rb0 == 1) && (RB0_bit == 0))
-	BTFSS       main_buf_rb0_L0+0, BitPos(main_buf_rb0_L0+0) 
-	GOTO        L_main27
-	BTFSC       RB0_bit+0, BitPos(RB0_bit+0) 
-	GOTO        L_main27
-L__main43:
-;pratica01.c,120 :: 		buf_rb1 = 1;
-	BSF         main_buf_rb1_L0+0, BitPos(main_buf_rb1_L0+0) 
-;pratica01.c,121 :: 		buf_rb0 = 0;
-	BCF         main_buf_rb0_L0+0, BitPos(main_buf_rb0_L0+0) 
-;pratica01.c,122 :: 		break;
-	GOTO        L_main24
-;pratica01.c,123 :: 		}
-L_main27:
-;pratica01.c,124 :: 		}
-	GOTO        L_main23
-L_main24:
-;pratica01.c,105 :: 		for(i=0;i<10;i++)
+;pratica01.c,104 :: 		i=i+1;
 	MOVLW       1
 	ADDWF       main_i_L0+0, 1 
 	MOVLW       0
 	ADDWFC      main_i_L0+1, 1 
 	ADDWFC      main_i_L0+2, 1 
 	ADDWFC      main_i_L0+3, 1 
-;pratica01.c,125 :: 		}
-	GOTO        L_main17
+;pratica01.c,105 :: 		TMR0ON_bit = 1;
+	BSF         TMR0ON_bit+0, BitPos(TMR0ON_bit+0) 
+;pratica01.c,106 :: 		teste  = 0;
+	BCF         _teste+0, BitPos(_teste+0) 
+;pratica01.c,107 :: 		while(teste == 0);
+L_main20:
+	BTFSC       _teste+0, BitPos(_teste+0) 
+	GOTO        L_main21
+	GOTO        L_main20
+L_main21:
+;pratica01.c,109 :: 		}
 L_main18:
-;pratica01.c,126 :: 		}
-	GOTO        L_main15
-L_main16:
-;pratica01.c,128 :: 		while(buf_rb0 == 0)
-L_main28:
-	BTFSC       main_buf_rb0_L0+0, BitPos(main_buf_rb0_L0+0) 
-	GOTO        L_main29
-;pratica01.c,130 :: 		for(i=0;i<10;i++)
+;pratica01.c,111 :: 		if(RB0_bit == 0)
+	BTFSC       RB0_bit+0, BitPos(RB0_bit+0) 
+	GOTO        L_main22
+;pratica01.c,113 :: 		if(i>9)
+	MOVLW       128
+	MOVWF       R0 
+	MOVLW       128
+	XORWF       main_i_L0+3, 0 
+	SUBWF       R0, 0 
+	BTFSS       STATUS+0, 2 
+	GOTO        L__main42
+	MOVF        main_i_L0+2, 0 
+	SUBLW       0
+	BTFSS       STATUS+0, 2 
+	GOTO        L__main42
+	MOVF        main_i_L0+1, 0 
+	SUBLW       0
+	BTFSS       STATUS+0, 2 
+	GOTO        L__main42
+	MOVF        main_i_L0+0, 0 
+	SUBLW       9
+L__main42:
+	BTFSC       STATUS+0, 0 
+	GOTO        L_main23
+;pratica01.c,115 :: 		i = 0;
 	CLRF        main_i_L0+0 
 	CLRF        main_i_L0+1 
 	CLRF        main_i_L0+2 
 	CLRF        main_i_L0+3 
-L_main30:
-	MOVLW       128
-	XORWF       main_i_L0+3, 0 
-	MOVWF       R0 
-	MOVLW       128
-	SUBWF       R0, 0 
-	BTFSS       STATUS+0, 2 
-	GOTO        L__main64
-	MOVLW       0
-	SUBWF       main_i_L0+2, 0 
-	BTFSS       STATUS+0, 2 
-	GOTO        L__main64
-	MOVLW       0
-	SUBWF       main_i_L0+1, 0 
-	BTFSS       STATUS+0, 2 
-	GOTO        L__main64
-	MOVLW       10
-	SUBWF       main_i_L0+0, 0 
-L__main64:
-	BTFSC       STATUS+0, 0 
-	GOTO        L_main31
-;pratica01.c,132 :: 		if((buf_rb1 == 1) && (RB1_bit == 0))
-	BTFSS       main_buf_rb1_L0+0, BitPos(main_buf_rb1_L0+0) 
-	GOTO        L_main35
-	BTFSC       RB1_bit+0, BitPos(RB1_bit+0) 
-	GOTO        L_main35
-L__main42:
-;pratica01.c,134 :: 		buf_rb1 = 0;
-	BCF         main_buf_rb1_L0+0, BitPos(main_buf_rb1_L0+0) 
-;pratica01.c,135 :: 		buf_rb0 = 1;
-	BSF         main_buf_rb0_L0+0, BitPos(main_buf_rb0_L0+0) 
-;pratica01.c,136 :: 		break;
-	GOTO        L_main31
-;pratica01.c,137 :: 		}
-L_main35:
-;pratica01.c,138 :: 		display(i);
+;pratica01.c,116 :: 		display(i);
+	CLRF        FARG_display_num+0 
+	CLRF        FARG_display_num+1 
+	CALL        _display+0, 0
+;pratica01.c,117 :: 		}
+L_main23:
+;pratica01.c,118 :: 		display(i);
 	MOVF        main_i_L0+0, 0 
 	MOVWF       FARG_display_num+0 
 	MOVF        main_i_L0+1, 0 
 	MOVWF       FARG_display_num+1 
 	CALL        _display+0, 0
-;pratica01.c,139 :: 		T0CON = 0b00000101;
+;pratica01.c,119 :: 		i=i+1;
+	MOVLW       1
+	ADDWF       main_i_L0+0, 1 
+	MOVLW       0
+	ADDWFC      main_i_L0+1, 1 
+	ADDWFC      main_i_L0+2, 1 
+	ADDWFC      main_i_L0+3, 1 
+;pratica01.c,120 :: 		T0CON = 0b00000101;      //Prescaler 1:64
 	MOVLW       5
 	MOVWF       T0CON+0 
-;pratica01.c,140 :: 		TMR0ON_bit = 1;
+;pratica01.c,121 :: 		TMR0ON_bit = 1;
 	BSF         TMR0ON_bit+0, BitPos(TMR0ON_bit+0) 
-;pratica01.c,141 :: 		teste  = 0;
+;pratica01.c,122 :: 		teste  = 0;
 	BCF         _teste+0, BitPos(_teste+0) 
-;pratica01.c,142 :: 		while(teste == 0){
-L_main36:
+;pratica01.c,123 :: 		while(teste == 0);
+L_main24:
 	BTFSC       _teste+0, BitPos(_teste+0) 
-	GOTO        L_main37
-;pratica01.c,143 :: 		if((buf_rb1 == 1) && (RB1_bit == 0))
-	BTFSS       main_buf_rb1_L0+0, BitPos(main_buf_rb1_L0+0) 
-	GOTO        L_main40
-	BTFSC       RB1_bit+0, BitPos(RB1_bit+0) 
-	GOTO        L_main40
-L__main41:
-;pratica01.c,145 :: 		buf_rb1 = 0;
-	BCF         main_buf_rb1_L0+0, BitPos(main_buf_rb1_L0+0) 
-;pratica01.c,146 :: 		buf_rb0 = 1;
-	BSF         main_buf_rb0_L0+0, BitPos(main_buf_rb0_L0+0) 
-;pratica01.c,147 :: 		break;
-	GOTO        L_main37
-;pratica01.c,148 :: 		}
-L_main40:
-;pratica01.c,149 :: 		}
-	GOTO        L_main36
-L_main37:
-;pratica01.c,130 :: 		for(i=0;i<10;i++)
-	MOVLW       1
-	ADDWF       main_i_L0+0, 1 
-	MOVLW       0
-	ADDWFC      main_i_L0+1, 1 
-	ADDWFC      main_i_L0+2, 1 
-	ADDWFC      main_i_L0+3, 1 
-;pratica01.c,151 :: 		}
-	GOTO        L_main30
-L_main31:
-;pratica01.c,152 :: 		}
-	GOTO        L_main28
-L_main29:
-;pratica01.c,153 :: 		}
+	GOTO        L_main25
+	GOTO        L_main24
+L_main25:
+;pratica01.c,125 :: 		}
+L_main22:
+;pratica01.c,127 :: 		}
 	GOTO        L_main13
-;pratica01.c,155 :: 		}
+;pratica01.c,128 :: 		}
 L_end_main:
 	GOTO        $+0
 ; end of _main
